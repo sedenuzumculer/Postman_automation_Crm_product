@@ -18,8 +18,10 @@ Bu projeyi kullanabilmek için aşağıdaki araçların sisteminizde kurulu olma
    ```bash
    git clone https://github.com/sedenuzumculer/staj.git
    cd staj
-npm install -g newman
-newman yükleyin
+  
+
+##newman yükleyin
+ npm install -g newman
 
 Testlerin Çalıştırılması
 
