@@ -21,7 +21,9 @@ Bu projeyi kullanabilmek için aşağıdaki araçların sisteminizde kurulu olma
   
 
 ##newman yükleyin
- npm install -g newman
+    ```bash
+    
+    npm install -g newman
 
 Testlerin Çalıştırılması
 
