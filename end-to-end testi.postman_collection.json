@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "7129cd65-9c8b-4b64-b3fd-3d57bc3eb2ea",
+		"name": "end-to-end testi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37961892"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status kodu 200 olmalı\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Giriş başarılı olmalı\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.isSuccess).to.be.true;  // isSuccess kontrolü\r",
+							"\r",
+							"    if (jsonData.isSuccess) {\r",
+							"        pm.environment.set(\"isLoggedIn\", true); \r",
+							"       \r",
+							"        pm.environment.set(\"authToken\", jsonData.token);\r",
+							"    } else {\r",
+							"        pm.environment.set(\"isLoggedIn\", false); \r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authorization}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"seden\",\r\n    \"password\" : \"seden1234.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}auth/login",
+					"host": [
+						"{{baseUrl}}auth"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"seden\",\r\n    \"password\": \"seden1234.\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ornektip.matebot.com.tr/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"ornektip",
+								"matebot",
+								"com",
+								"tr"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 09 Sep 2024 05:24:55 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "https://ornektip.matebot.com.tr"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src * data: 'unsafe-eval' 'unsafe-inline'"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer-when-downgrade"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "RateLimit-Policy",
+							"value": "1600;w=600"
+						},
+						{
+							"key": "RateLimit-Limit",
+							"value": "1600"
+						},
+						{
+							"key": "RateLimit-Remaining",
+							"value": "1585"
+						},
+						{
+							"key": "RateLimit-Reset",
+							"value": "18"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"68-UfEIG8fwbzanFEwKris4lyTN/cI\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session=eyJqd3QiOiJleUpoYkdjaU9pSlNVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalkyWTJSaU5EWTVOemxoWXpZME9HUmlNemsyTWpFMFlpSXNJbVZ0WVdsc0lqb2lkR1Z6ZEVCMFpYTjBMbU52YlM1MGNpSXNJblZ6WlhKdVlXMWxJam9pYzJWa1pXNGlMQ0p5YjJ4bElqb2laWGh3WlhKMElpd2labWx5YzNST1lXMWxJam9pVTJWa1pXNGlMQ0pzWVhOMFRtRnRaU0k2SXNPY1dzT2NUVVBEbkV4RlVpQW9WR1Z6ZENraUxDSnBZWFFpT2pFM01qVTROVGswT1RVc0ltVjRjQ0k2TVRjeU5qSTVNVFE1TlN3aVlYVmtJam9pYUhSMGNITTZMeTloYTJsdGJXVjBZV3d1WTI5dExuUnlJaXdpYVhOeklqb2lRU0JIY25Wd0lpd2ljM1ZpSWpvaVNHVnNiRzhpZlEudDhfbEtGYlRUNFZVZ290ZTBSYUstZzBIYnZkNEtISnM1bXNuMlY2UlpVQ3QyLU5TZUF2MjhYc0w2WVJrOHp2TUg5b0Y3Y3pGX0cyTnIzdk5kRU4wSS1LTFRPU1RZbU55V1BFREl2dktRdVlja1d1QVJYZ0VPSkpqY2FENjN5WU83bEtDVXY3WDdKQzFqcGNvUm9mWVlDSDNkelVuUWd5WTNCYnhZWGllb09sOHFLclJZWFhFc3ZiUENmNkxwWEc1SkFhQy1EekI5bFB5OERZM29CRk50NTVmdkxIZzBIWjNnY0lVQV8tb0NiTUlya1BYd0U5dFo0NHFTVFBkb3h3VHBZdkMzckx5dE1xd0U3LUtIM1d3SnN0QTRWdVRVc2VkSlc0M3M2M0F6SkVEX2lzNmNLMHR1WVJXQU9fZkMtdGE1U2h4WVkxSHlKd2Z3bFFueGw3MlZBIn0=; path=/; samesite=none; secure; httponly"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=73WPXemQZV5f4%2FGdt7Tum2wfgGFZKb27Jhjws75xVLfUr3xnQSnGpRldWwL%2F8C8fQ3nEgWHI2PK2GggJidiGrYW3Qgk%2FeptjX3KPnn7O0M6Yjwv1SUpN5xRUsx%2F5N3mC9XRlVuFG%2BLZ%2FtA%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "8c04c1337f212345-IST"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"summary\": \"Çalışıyor\",\n    \"detail\": \"Giriş işlemi başarılı!\",\n    \"severity\": \"success\",\n    \"isSuccess\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "current-user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status kodu 200 olmalı\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Giriş işlemi yapılmış olmalı\", function () {\r",
+							"    var isLoggedIn = pm.environment.get(\"isLoggedIn\");\r",
+							"    pm.expect(isLoggedIn).to.be.true;  // Giriş yapılıp yapılmadığını kontrol et\r",
+							"});\r",
+							"pm.test(\"Kullanıcı bilgileri doğru olmalı\", function () {\r",
+							"    var jsonData = pm.response.json().currentUser;\r",
+							"    pm.expect(jsonData).to.have.property('email', 'test@test.com.tr'); // Email kontrolü\r",
+							"    pm.expect(jsonData).to.have.property('username', 'seden'); // Username kontrolü\r",
+							"    pm.expect(jsonData).to.have.property('firstName', 'Seden'); // First name kontrolü\r",
+							"    pm.expect(jsonData).to.have.property('lastName', 'ÜZÜMCÜLER'); // Last name kontrolü\r",
+							"    pm.expect(jsonData).to.have.property('role', 'expert'); // Role kontrolü\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"seden\",\r\n    \"password\" : \"seden1234.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}auth/current-user",
+					"host": [
+						"{{baseUrl}}auth"
+					],
+					"path": [
+						"current-user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"seden\",\r\n    \"password\": \"seden1234.\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ornektip.matebot.com.tr/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"ornektip",
+								"matebot",
+								"com",
+								"tr"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 09 Sep 2024 05:24:55 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "https://ornektip.matebot.com.tr"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src * data: 'unsafe-eval' 'unsafe-inline'"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer-when-downgrade"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "RateLimit-Policy",
+							"value": "1600;w=600"
+						},
+						{
+							"key": "RateLimit-Limit",
+							"value": "1600"
+						},
+						{
+							"key": "RateLimit-Remaining",
+							"value": "1585"
+						},
+						{
+							"key": "RateLimit-Reset",
+							"value": "18"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"68-UfEIG8fwbzanFEwKris4lyTN/cI\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "session=eyJqd3QiOiJleUpoYkdjaU9pSlNVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalkyWTJSaU5EWTVOemxoWXpZME9HUmlNemsyTWpFMFlpSXNJbVZ0WVdsc0lqb2lkR1Z6ZEVCMFpYTjBMbU52YlM1MGNpSXNJblZ6WlhKdVlXMWxJam9pYzJWa1pXNGlMQ0p5YjJ4bElqb2laWGh3WlhKMElpd2labWx5YzNST1lXMWxJam9pVTJWa1pXNGlMQ0pzWVhOMFRtRnRaU0k2SXNPY1dzT2NUVVBEbkV4RlVpQW9WR1Z6ZENraUxDSnBZWFFpT2pFM01qVTROVGswT1RVc0ltVjRjQ0k2TVRjeU5qSTVNVFE1TlN3aVlYVmtJam9pYUhSMGNITTZMeTloYTJsdGJXVjBZV3d1WTI5dExuUnlJaXdpYVhOeklqb2lRU0JIY25Wd0lpd2ljM1ZpSWpvaVNHVnNiRzhpZlEudDhfbEtGYlRUNFZVZ290ZTBSYUstZzBIYnZkNEtISnM1bXNuMlY2UlpVQ3QyLU5TZUF2MjhYc0w2WVJrOHp2TUg5b0Y3Y3pGX0cyTnIzdk5kRU4wSS1LTFRPU1RZbU55V1BFREl2dktRdVlja1d1QVJYZ0VPSkpqY2FENjN5WU83bEtDVXY3WDdKQzFqcGNvUm9mWVlDSDNkelVuUWd5WTNCYnhZWGllb09sOHFLclJZWFhFc3ZiUENmNkxwWEc1SkFhQy1EekI5bFB5OERZM29CRk50NTVmdkxIZzBIWjNnY0lVQV8tb0NiTUlya1BYd0U5dFo0NHFTVFBkb3h3VHBZdkMzckx5dE1xd0U3LUtIM1d3SnN0QTRWdVRVc2VkSlc0M3M2M0F6SkVEX2lzNmNLMHR1WVJXQU9fZkMtdGE1U2h4WVkxSHlKd2Z3bFFueGw3MlZBIn0=; path=/; samesite=none; secure; httponly"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=73WPXemQZV5f4%2FGdt7Tum2wfgGFZKb27Jhjws75xVLfUr3xnQSnGpRldWwL%2F8C8fQ3nEgWHI2PK2GggJidiGrYW3Qgk%2FeptjX3KPnn7O0M6Yjwv1SUpN5xRUsx%2F5N3mC9XRlVuFG%2BLZ%2FtA%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "8c04c1337f212345-IST"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"summary\": \"Çalışıyor\",\n    \"detail\": \"Giriş işlemi başarılı!\",\n    \"severity\": \"success\",\n    \"isSuccess\": true\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://backend.dijitalgen.biz.tr/api/"
+		},
+		{
+			"key": "authorization",
+			"value": "0d96f3e0-df3e-43d4-8fa0-931e8fe06680"
+		}
+	]
+}
